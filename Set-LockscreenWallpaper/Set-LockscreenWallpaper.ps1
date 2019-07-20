@@ -7,4 +7,7 @@ function Set-LockscreenWallpaper($path) {
 	$file = $wrapper.AwaitResult()
 	$null = [Windows.System.UserProfile.LockScreen,Windows.System.UserProfile,ContentType=WindowsRuntime]
 	[Windows.System.UserProfile.LockScreen]::SetImageFileAsync($file)
+	$typeName = 'PoshWinRT.AsyncActionWrapper'
+        $wrapper = new-object $typeName -Arg $asyncOp
+        $wrapper.AwaitResult()
 }
